@@ -1,68 +1,52 @@
 import { useState } from "react";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
-import { Search, ShoppingBag, User, Menu, X, Instagram, ArrowRight, Truck, Lock, HeadphonesIcon } from "lucide-react";
-import logoImg from "../imports/Dise_o_sin_t_tulo.svg";
-import heroImg from "../imports/WhatsApp_Image_2026-06-10_at_7.40.44_AM.jpeg";
+import { Search, ShoppingBag, Instagram, ArrowRight, Truck, Lock, HeadphonesIcon } from "lucide-react";
+import logoImg from "../imports/logo.png";
+import HeroImg from "../imports/hero.jpeg";
+import bolso1Img from "../imports/bolso1.jpeg";
+import bolso2Img from "../imports/bolso2.jpeg";
+import bolso3Img from "../imports/bolso3.jpeg";
+import bolso4Img from "../imports/bolso4.jpeg";
+import mujer2Img from "../imports/mujer2.jpeg";
+import insta1Img from "../imports/insta1.jpeg";
+import insta2Img from "../imports/insta2.jpeg";
+import insta3Img from "../imports/insta3.jpeg";
+import insta4Img from "../imports/insta4.jpeg";
+import { Sheet, SheetTrigger, SheetContent, SheetTitle, SheetClose } from "./components/ui/sheet";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "./components/ui/carousel";
 
 /* MARKER-MAKE-KIT-INVOKED */
 
 const products = [
-  {
-    id: 1,
-    name: "Buba Demo",
-    price: "$0 COP",
-    image: "https://images.unsplash.com/photo-1590739225287-bd31519780c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    tag: "BEST SELLER",
-  },
-  {
-    id: 2,
-    name: "Buba Demo",
-    price: "$0 COP",
-    image: "https://images.unsplash.com/photo-1614179689702-355944cd0918?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    tag: "NUEVO",
-  },
-  {
-    id: 3,
-    name: "Buba Demo",
-    price: "$0 COP",
-    image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    tag: null,
-  },
-  {
-    id: 4,
-    name: "Buba Demo",
-    price: "$0 COP",
-    image: "https://images.unsplash.com/photo-1590739169125-a9438401596a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    tag: "EXCLUSIVO",
-  },
+  { id: 1, name: "Buba Demo", price: "$0 COP", image: bolso1Img, tag: "BEST SELLER" },
+  { id: 2, name: "Buba Demo", price: "$0 COP", image: bolso2Img, tag: "NUEVO" },
+  { id: 3, name: "Buba Demo", price: "$0 COP", image: bolso3Img, tag: null },
+  { id: 4, name: "Buba Demo", price: "$0 COP", image: bolso4Img, tag: "EXCLUSIVO" },
 ];
 
 const categories = [
-  {
-    id: 1,
-    label: "BOLSOS",
-    image: "https://images.unsplash.com/photo-1705909237050-7a7625b47fac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-  },
-  {
-    id: 2,
-    label: "CARTERAS",
-    image: "https://images.unsplash.com/photo-1628149453636-23e882b3c1fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-  },
-  {
-    id: 3,
-    label: "ACCESORIOS",
-    image: "https://images.unsplash.com/photo-1629511565591-a1d494ad6c58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-  },
+  { id: 1, label: "BOLSOS", image: bolso1Img },
+  { id: 2, label: "CALZADOS", image: bolso2Img },
+  { id: 3, label: "ACCESORIOS", image: bolso3Img },
 ];
 
 const services = [
-  { icon: <Truck size={20} />, title: "ENVÍOS SIN RECARGOS", desc: "Envío gratis en pedidos mayores a $100" },
+  { icon: <Truck size={20} />, title: "ENVÍOS SIN RECARGOS", desc: "Envío gratis en todos los pedidos — $0 COP" },
   { icon: <Lock size={20} />, title: "PAGOS SEGUROS", desc: "Transacciones protegidas y encriptadas" },
   { icon: <HeadphonesIcon size={20} />, title: "ATENCIÓN PERSONALIZADA", desc: "Te acompañamos en cada paso" },
 ];
 
+const instagramImages = [
+  { src: insta1Img, alt: "Instagram 1" },
+  { src: insta2Img, alt: "Instagram 2" },
+  { src: insta3Img, alt: "Instagram 3" },
+  { src: insta4Img, alt: "Instagram 4" },
+  { src: mujer2Img, alt: "Instagram 5" },
+];
+
+const navLinks = ["INICIO", "BOLSOS", "CALZADOS", "ACCESORIOS"];
+
 export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [cartCount] = useState(0);
 
   return (
@@ -70,17 +54,17 @@ export default function App() {
 
       {/* ── Announcement bar ── */}
       <div style={{ backgroundColor: "#1A1A1A", color: "#FAF8F4", textAlign: "center", padding: "10px 16px", fontSize: "0.72rem", letterSpacing: "0.16em" }}>
-        ENVÍO GRATIS EN PEDIDOS MAYORES A $100 &nbsp;·&nbsp; COLECCIÓN 2026 DISPONIBLE
+        ENVÍO GRATIS EN TODOS LOS PEDIDOS — $0 COP &nbsp;·&nbsp; COLECCIÓN 2026 DISPONIBLE
       </div>
 
       {/* ── Nav ── */}
       <nav style={{ backgroundColor: "#FAF8F4", borderBottom: "1px solid rgba(26,26,26,0.1)", position: "sticky", top: 0, zIndex: 100 }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
-          <a href="#" style={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
-            <ImageWithFallback src={logoImg} alt="Buba Handbags & Complement" style={{ height: 48, width: "auto", objectFit: "contain", filter: "brightness(0)" }} />
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 16px", height: 110 }} className="flex items-center justify-between md:px-6">
+          <a href="#" className="flex items-center shrink-0">
+            <img src={logoImg} alt="Buba Handbags & Complement" style={{ height: 90, width: "auto", objectFit: "contain" }} />
           </a>
-          <ul style={{ display: "flex", gap: 36, listStyle: "none", margin: 0, padding: 0 }} className="hidden md:flex">
-            {["INICIO", "BOLSOS", "CALZADOS", "ACCESORIOS"].map((item) => (
+          <ul className="hidden md:flex gap-9 list-none m-0 p-0">
+            {navLinks.map((item) => (
               <li key={item}>
                 <a href="#" style={{ fontSize: "0.7rem", letterSpacing: "0.18em", color: "#1A1A1A", textDecoration: "none", transition: "opacity 0.2s" }}
                   onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.5")}
@@ -90,8 +74,8 @@ export default function App() {
               </li>
             ))}
           </ul>
-          <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            <button style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}><Search size={18} color="#1A1A1A" /></button>
+          <div className="flex items-center gap-3 md:gap-5">
+            <button className="hidden md:block" style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}><Search size={18} color="#1A1A1A" /></button>
             <button style={{ background: "none", border: "none", cursor: "pointer", padding: 4, position: "relative" }}>
               <ShoppingBag size={18} color="#1A1A1A" />
               {cartCount > 0 && (
@@ -100,26 +84,50 @@ export default function App() {
                 </span>
               )}
             </button>
-            <button style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}><User size={18} color="#1A1A1A" /></button>
-            <button className="md:hidden" style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }} onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
+
+            {/* Mobile hamburger — three lines */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <button className="flex md:hidden flex-col gap-[4px] items-center justify-center" style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
+                  <span style={{ display: "block", width: 20, height: 2, backgroundColor: "#1A1A1A", borderRadius: 1 }} />
+                  <span style={{ display: "block", width: 20, height: 2, backgroundColor: "#1A1A1A", borderRadius: 1 }} />
+                  <span style={{ display: "block", width: 20, height: 2, backgroundColor: "#1A1A1A", borderRadius: 1 }} />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" style={{ backgroundColor: "#FAF8F4", padding: 0, zIndex: 200 }}>
+                <SheetTitle className="sr-only">Navegación</SheetTitle>
+                <div style={{ padding: "32px 24px" }}>
+                  <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 28 }}>
+                    {navLinks.map((item) => (
+                      <li key={item}>
+                        <SheetClose asChild>
+                          <a href="#" style={{ fontSize: "0.85rem", letterSpacing: "0.2em", color: "#1A1A1A", textDecoration: "none", display: "block", transition: "opacity 0.2s" }}
+                            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.5")}
+                            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}>
+                            {item}
+                          </a>
+                        </SheetClose>
+                      </li>
+                    ))}
+                  </ul>
+                  <div style={{ marginTop: 40, paddingTop: 28, borderTop: "1px solid rgba(26,26,26,0.1)", display: "flex", flexDirection: "column", gap: 20 }}>
+                    <a href="#" style={{ fontSize: "0.75rem", letterSpacing: "0.16em", color: "#8B7355", textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
+                      <Search size={16} /> BUSCAR
+                    </a>
+                    <a href="https://instagram.com/bubabags.col" target="_blank" rel="noopener noreferrer" style={{ fontSize: "0.75rem", letterSpacing: "0.16em", color: "#8B7355", textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
+                      <Instagram size={16} /> INSTAGRAM
+                    </a>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-        {menuOpen && (
-          <div style={{ backgroundColor: "#FAF8F4", borderTop: "1px solid rgba(26,26,26,0.1)", padding: "24px" }} className="md:hidden">
-            <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 20 }}>
-              {["INICIO", "BOLSOS", "CALZADOS", "ACCESORIOS"].map((item) => (
-                <li key={item}><a href="#" style={{ fontSize: "0.75rem", letterSpacing: "0.2em", color: "#1A1A1A", textDecoration: "none" }}>{item}</a></li>
-              ))}
-            </ul>
-          </div>
-        )}
       </nav>
 
       {/* ── Hero ── */}
-      <section style={{ position: "relative", height: "92vh", maxHeight: 960, overflow: "hidden" }} className="lg:mx-10 lg:rounded-2xl">
-        <img src={heroImg} alt="Mujer con bolso Buba sobre fondo beige" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "65% top", display: "block" }} />
+      <section style={{ position: "relative", height: "85vh", maxHeight: 960, overflow: "hidden" }} className="lg:mx-10 lg:rounded-2xl">
+        <img src={HeroImg} alt="Mujer con bolso Buba sobre fondo beige" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "65% top", display: "block" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.52) 0%, rgba(10,10,10,0.15) 60%, transparent 100%)" }} />
         <div style={{ position: "relative", zIndex: 1, height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 clamp(24px, 7vw, 120px)" }}>
           <p style={{ fontSize: "0.68rem", letterSpacing: "0.22em", color: "#D4B896", marginBottom: 24, textTransform: "uppercase" }}>Nueva Colección 2026</p>
@@ -146,7 +154,7 @@ export default function App() {
 
       {/* ── Category tiles ── */}
       <section style={{ maxWidth: 1280, margin: "64px auto 0", padding: "0 24px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }} className="grid-cols-1 sm:grid-cols-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {categories.map((cat) => (
             <a key={cat.id} href="#"
               style={{ display: "block", position: "relative", overflow: "hidden", aspectRatio: "5/4", textDecoration: "none", cursor: "pointer" }}
@@ -163,7 +171,7 @@ export default function App() {
                 if (overlay) overlay.style.backgroundColor = "rgba(10,10,10,0.45)";
               }}
             >
-              <ImageWithFallback src={cat.image} alt={cat.label} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s ease" }} />
+              <img src={cat.image} alt={cat.label} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s ease" }} />
               <div className="cat-overlay" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(10,10,10,0.45)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, transition: "background-color 0.3s" }}>
                 <span style={{ color: "#FAF8F4", fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.4rem, 2.5vw, 2rem)", fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase" }}>
                   {cat.label}
@@ -184,19 +192,20 @@ export default function App() {
             <p style={{ fontSize: "0.65rem", letterSpacing: "0.2em", color: "#8B7355", marginBottom: 8 }}>TEMPORADA 2026</p>
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.8rem)", fontWeight: 400, color: "#1A1A1A", margin: 0 }}>Nueva Colección</h2>
           </div>
-          <a href="#" style={{ fontSize: "0.68rem", letterSpacing: "0.16em", color: "#8B7355", textDecoration: "none", display: "flex", alignItems: "center", gap: 8 }}>
+          <a href="#" className="hidden sm:flex" style={{ fontSize: "0.68rem", letterSpacing: "0.16em", color: "#8B7355", textDecoration: "none", alignItems: "center", gap: 8 }}>
             VER TODO <ArrowRight size={14} />
           </a>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }} className="grid-cols-2 md:grid-cols-4">
+
+        {/* Desktop: grid */}
+        <div className="hidden md:grid" style={{ gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
           {products.map((product) => (
             <div key={product.id} style={{ cursor: "pointer" }}
               onMouseEnter={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.04)"; }}
               onMouseLeave={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}
             >
-              {/* Square-ish card: 5/4 ratio */}
-              <div style={{ position: "relative", aspectRatio: "5/4", overflow: "hidden", backgroundColor: "#F0EBE1" }}>
-                <ImageWithFallback src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }} />
+              <div style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden", backgroundColor: "#F0EBE1" }}>
+                <img src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }} />
                 {product.tag && (
                   <span style={{ position: "absolute", top: 12, left: 12, backgroundColor: "#1A1A1A", color: "#FAF8F4", fontSize: "0.58rem", letterSpacing: "0.14em", padding: "4px 10px" }}>
                     {product.tag}
@@ -213,69 +222,87 @@ export default function App() {
             </div>
           ))}
         </div>
+
+        {/* Mobile carousel */}
+        <div className="md:hidden">
+          <Carousel opts={{ align: "start", loop: true }}>
+            <CarouselContent style={{ marginLeft: -8 }}>
+              {products.map((product) => (
+                <CarouselItem key={product.id} style={{ paddingLeft: 8, flexBasis: "75%" }}>
+                  <div style={{ cursor: "pointer" }}>
+                    <div style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden", backgroundColor: "#F0EBE1" }}>
+                      <img src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      {product.tag && (
+                        <span style={{ position: "absolute", top: 12, left: 12, backgroundColor: "#1A1A1A", color: "#FAF8F4", fontSize: "0.58rem", letterSpacing: "0.14em", padding: "4px 10px" }}>
+                          {product.tag}
+                        </span>
+                      )}
+                    </div>
+                    <div style={{ padding: "14px 4px 0" }}>
+                      <p style={{ fontSize: "0.8rem", color: "#1A1A1A", marginBottom: 4, letterSpacing: "0.04em" }}>{product.name}</p>
+                      <p style={{ fontSize: "0.78rem", color: "#8B7355", letterSpacing: "0.06em" }}>{product.price}</p>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-1 top-1/2 -translate-y-1/2" variant="outline" style={{ backgroundColor: "rgba(250,248,244,0.9)", border: "1px solid rgba(26,26,26,0.15)", borderRadius: "50%", width: 36, height: 36 }} />
+            <CarouselNext className="right-1 top-1/2 -translate-y-1/2" variant="outline" style={{ backgroundColor: "rgba(250,248,244,0.9)", border: "1px solid rgba(26,26,26,0.15)", borderRadius: "50%", width: 36, height: 36 }} />
+          </Carousel>
+        </div>
       </section>
 
       {/* ── Lifestyle: "Una mujer que sabe exactamente quién es." ── */}
-      <section style={{ maxWidth: 1280, margin: "80px auto 0", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center", minHeight: 520 }} className="grid-cols-1 md:grid-cols-2">
-        {/* Text left */}
-        <div>
-          <p style={{ fontSize: "0.65rem", letterSpacing: "0.2em", color: "#8B7355", marginBottom: 24 }}>FILOSOFÍA BUBA</p>
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.2rem, 4vw, 3.4rem)", fontWeight: 300, color: "#1A1A1A", lineHeight: 1.15, marginBottom: 28 }}>
-            Una mujer que sabe{" "}
-            <em>exactamente</em>{" "}
-            quién es.
-          </h2>
-          <p style={{ fontSize: "0.85rem", color: "#5A5A5A", lineHeight: 1.9, maxWidth: 400, fontWeight: 300, marginBottom: 36 }}>
-            Cada bolso Buba es una declaración silenciosa. Confeccionado con materiales cuidadosamente seleccionados para mujeres que no necesitan explicarse.
-          </p>
-          <a href="#" style={{ fontSize: "0.65rem", letterSpacing: "0.2em", color: "#1A1A1A", textDecoration: "none", borderBottom: "1px solid rgba(26,26,26,0.4)", paddingBottom: 4, alignSelf: "flex-start", display: "inline-flex", alignItems: "center", gap: 8 }}>
-            CONOCE NUESTRA HISTORIA <ArrowRight size={12} />
-          </a>
-        </div>
-        {/* Model image right — portrait crop */}
-        <div style={{ overflow: "hidden", aspectRatio: "3/4" }}>
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1557161622-5f50ca344787?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
-            alt="Mujer elegante caminando"
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
-          />
+      <section style={{ maxWidth: 1280, margin: "56px auto 0", padding: "0 24px" }} className="md:mt-20">
+        <div style={{ display: "grid", gap: 32, alignItems: "center" }} className="md:grid-cols-2 md:gap-16 md:min-h-[520px]">
+          <div>
+            <p style={{ fontSize: "0.65rem", letterSpacing: "0.2em", color: "#8B7355", marginBottom: 16 }}>NUESTRA ESENCIA</p>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 5vw, 3.4rem)", fontWeight: 300, color: "#1A1A1A", lineHeight: 1.15, marginBottom: 20 }}>
+              Una mujer que sabe <em>exactamente</em> quién es.
+            </h2>
+            <p style={{ fontSize: "0.85rem", color: "#5A5A5A", lineHeight: 1.8, fontWeight: 300, marginBottom: 28 }}>
+              Cada bolso Buba es una declaración silenciosa. Confeccionado con materiales cuidadosamente seleccionados para mujeres que no necesitan explicarse.
+            </p>
+            <a href="#" style={{ fontSize: "0.65rem", letterSpacing: "0.2em", color: "#1A1A1A", textDecoration: "none", borderBottom: "1px solid rgba(26,26,26,0.4)", paddingBottom: 4, display: "inline-flex", alignItems: "center", gap: 8 }}>
+              CONOCE NUESTRA HISTORIA <ArrowRight size={12} />
+            </a>
+          </div>
+          <div style={{ overflow: "hidden", aspectRatio: "3/4", borderRadius: 4 }} className="md:aspect-[2/3] md:rounded-none">
+            <img src={mujer2Img} alt="Mujer elegante caminando" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
+          </div>
         </div>
       </section>
 
       {/* ── Featured: Buba Noir ── */}
-      <section style={{ maxWidth: 1280, margin: "80px auto 0", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }} className="grid-cols-1 md:grid-cols-2">
-        {/* Bag image left — more square */}
-        <div style={{ aspectRatio: "5/4", overflow: "hidden", backgroundColor: "#F0EBE1" }}>
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1590739169125-a9438401596a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
-            alt="Buba Noir"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        </div>
-        {/* Info right */}
-        <div>
-          <p style={{ fontSize: "0.65rem", letterSpacing: "0.2em", color: "#8B7355", marginBottom: 16 }}>PIEZA DESTACADA</p>
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.2rem, 4vw, 3.5rem)", fontWeight: 400, color: "#1A1A1A", marginBottom: 12 }}>Buba Demo</h2>
-          <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.6rem", color: "#8B7355", marginBottom: 24, fontWeight: 300 }}>$0 COP</p>
-          <p style={{ fontSize: "0.85rem", color: "#5A5A5A", lineHeight: 1.8, maxWidth: 380, fontWeight: 300, marginBottom: 36 }}>
-            La Buba Noir encarna la elegancia oscura. Cuero genuino negro, herrajes dorados y un diseño estructurado que transita del día a la noche sin esfuerzo.
-          </p>
-          <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-            <button style={{ backgroundColor: "#1A1A1A", color: "#FAF8F4", border: "none", padding: "14px 40px", fontSize: "0.68rem", letterSpacing: "0.18em", cursor: "pointer", transition: "background-color 0.2s", textTransform: "uppercase" }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#3A3A3A")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#1A1A1A")}>
-              Comprar Ahora
-            </button>
-            <button style={{ backgroundColor: "transparent", color: "#1A1A1A", border: "1px solid rgba(26,26,26,0.3)", padding: "14px 28px", fontSize: "0.68rem", letterSpacing: "0.18em", cursor: "pointer", textTransform: "uppercase" }}>
-              Ver Detalles
-            </button>
+      <section style={{ maxWidth: 1280, margin: "56px auto 0", padding: "0 24px" }} className="md:mt-20">
+        <div style={{ display: "grid", gap: 32, alignItems: "center" }} className="md:grid-cols-2 md:gap-16">
+          <div style={{ aspectRatio: "3/4", overflow: "hidden", backgroundColor: "#F0EBE1", borderRadius: 4 }} className="md:aspect-[2/3] md:rounded-none">
+            <img src={bolso4Img} alt="Buba Noir" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          </div>
+          <div>
+            <p style={{ fontSize: "0.65rem", letterSpacing: "0.2em", color: "#8B7355", marginBottom: 12 }}>PIEZA DESTACADA</p>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 5vw, 3.5rem)", fontWeight: 400, color: "#1A1A1A", marginBottom: 8 }}>Buba Demo</h2>
+            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.4rem", color: "#8B7355", marginBottom: 20, fontWeight: 300 }}>$0 COP</p>
+            <p style={{ fontSize: "0.85rem", color: "#5A5A5A", lineHeight: 1.8, fontWeight: 300, marginBottom: 28 }}>
+              La Buba Noir encarna la elegancia oscura. Cuero genuino negro, herrajes dorados y un diseño estructurado que transita del día a la noche sin esfuerzo.
+            </p>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <button style={{ backgroundColor: "#1A1A1A", color: "#FAF8F4", border: "none", padding: "12px 32px", fontSize: "0.68rem", letterSpacing: "0.18em", cursor: "pointer", transition: "background-color 0.2s", textTransform: "uppercase" }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#3A3A3A")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#1A1A1A")}>
+                Comprar Ahora
+              </button>
+              <button style={{ backgroundColor: "transparent", color: "#1A1A1A", border: "1px solid rgba(26,26,26,0.3)", padding: "12px 24px", fontSize: "0.68rem", letterSpacing: "0.18em", cursor: "pointer", textTransform: "uppercase" }}>
+                Ver Detalles
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── Service icons ── */}
       <section style={{ maxWidth: 1280, margin: "72px auto 0", padding: "0 24px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32, borderTop: "1px solid rgba(26,26,26,0.1)", borderBottom: "1px solid rgba(26,26,26,0.1)", padding: "40px 0" }} className="grid-cols-1 md:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ borderTop: "1px solid rgba(26,26,26,0.1)", borderBottom: "1px solid rgba(26,26,26,0.1)", padding: "40px 0" }}>
           {services.map((s) => (
             <div key={s.title} style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
               <div style={{ color: "#8B7355", flexShrink: 0, marginTop: 2 }}>{s.icon}</div>
@@ -290,7 +317,6 @@ export default function App() {
 
       {/* ── Instagram strip ── */}
       <section style={{ maxWidth: 1280, margin: "72px auto 0", padding: "0 24px" }}>
-        {/* Header row */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <p style={{ fontSize: "0.85rem", letterSpacing: "0.04em", color: "#1A1A1A" }}>@bubabags.col</p>
           <a href="#" style={{ fontSize: "0.65rem", letterSpacing: "0.16em", color: "#1A1A1A", textDecoration: "none", display: "flex", alignItems: "center", gap: 8, borderBottom: "1px solid rgba(26,26,26,0.3)", paddingBottom: 2 }}>
@@ -298,79 +324,68 @@ export default function App() {
           </a>
         </div>
 
-        {/* Photo strip — 5 equal square cells, no gap */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 0 }}>
-          {/* Cell 1 */}
-          <div style={{ aspectRatio: "1/1", overflow: "hidden", cursor: "pointer" }}
-            onMouseEnter={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.06)"; }}
-            onMouseLeave={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}>
-            <ImageWithFallback src="https://images.unsplash.com/photo-1629511565591-a1d494ad6c58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" alt="Instagram 1" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }} />
-          </div>
+        {/* Desktop: 5-column grid */}
+        <div className="hidden sm:grid" style={{ gridTemplateColumns: "repeat(5, 1fr)", gap: 0 }}>
+          {instagramImages.map((item, i) => (
+            <div key={i} style={{ aspectRatio: "1/1", overflow: "hidden", cursor: "pointer" }}
+              onMouseEnter={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.06)"; }}
+              onMouseLeave={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}>
+              <img src={item.src} alt={item.alt} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }} />
+            </div>
+          ))}
+        </div>
 
-          {/* Cell 2 — dark with text */}
-          <div style={{ aspectRatio: "1/1", backgroundColor: "#1A1A1A", display: "flex", alignItems: "center", justifyContent: "center", padding: 24, cursor: "pointer" }}>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.1rem, 1.8vw, 1.5rem)", fontWeight: 300, color: "#FAF8F4", lineHeight: 1.2, textAlign: "center" }}>
-              Diseñado<br /><em>a tu</em><br />medida.
-            </p>
-          </div>
-
-          {/* Cell 3 */}
-          <div style={{ aspectRatio: "1/1", overflow: "hidden", cursor: "pointer" }}
-            onMouseEnter={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.06)"; }}
-            onMouseLeave={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}>
-            <ImageWithFallback src="https://images.unsplash.com/photo-1614179689702-355944cd0918?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" alt="Instagram 3" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }} />
-          </div>
-
-          {/* Cell 4 */}
-          <div style={{ aspectRatio: "1/1", overflow: "hidden", cursor: "pointer" }}
-            onMouseEnter={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.06)"; }}
-            onMouseLeave={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}>
-            <ImageWithFallback src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" alt="Instagram 4" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }} />
-          </div>
-
-          {/* Cell 5 */}
-          <div style={{ aspectRatio: "1/1", overflow: "hidden", cursor: "pointer" }}
-            onMouseEnter={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.06)"; }}
-            onMouseLeave={(e) => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}>
-            <ImageWithFallback src="https://images.unsplash.com/photo-1557161622-5f50ca344787?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" alt="Instagram 5" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }} />
-          </div>
+        {/* Mobile: carousel */}
+        <div className="sm:hidden">
+          <Carousel opts={{ align: "start", loop: true }}>
+            <CarouselContent style={{ marginLeft: -4 }}>
+              {instagramImages.map((item, i) => (
+                <CarouselItem key={i} style={{ paddingLeft: 4, flexBasis: "60%" }}>
+                  <div style={{ aspectRatio: "1/1", overflow: "hidden" }}>
+                    <img src={item.src} alt={item.alt} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-1 top-1/2 -translate-y-1/2" variant="outline" style={{ backgroundColor: "rgba(250,248,244,0.9)", border: "1px solid rgba(26,26,26,0.15)", borderRadius: "50%", width: 32, height: 32 }} />
+            <CarouselNext className="right-1 top-1/2 -translate-y-1/2" variant="outline" style={{ backgroundColor: "rgba(250,248,244,0.9)", border: "1px solid rgba(26,26,26,0.15)", borderRadius: "50%", width: 32, height: 32 }} />
+          </Carousel>
         </div>
       </section>
 
       {/* ── Footer ── */}
       <footer style={{ backgroundColor: "#1A1A1A", color: "#FAF8F4", padding: "64px 24px 32px", marginTop: 72 }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 40, marginBottom: 56 }} className="grid-cols-2 md:grid-cols-4">
-            <div>
-              <div style={{ marginBottom: 20 }}>
-                <ImageWithFallback src={logoImg} alt="Buba" style={{ height: 48, width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }} />
-              </div>
-              <p style={{ fontSize: "0.78rem", color: "rgba(250,248,244,0.5)", lineHeight: 1.8, fontWeight: 300 }}>Bolsos y accesorios para la mujer contemporánea.</p>
+        <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
+          <div style={{ marginBottom: 48 }}>
+            <div style={{ marginBottom: 16, display: "flex", justifyContent: "center" }}>
+              <img src={logoImg} alt="Buba" style={{ height: 48, width: "auto", objectFit: "contain" }} />
             </div>
-            {[
-              { heading: "TIENDA", links: ["Inicio", "Bolsos", "Calzados", "Accesorios"] },
-              {
-                heading: "CONTACTO", links: [], custom: (
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
-                    <li><a href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer" style={{ fontSize: "0.78rem", color: "rgba(250,248,244,0.6)", textDecoration: "none" }}>WhatsApp</a></li>
-                    <li><a href="https://instagram.com/bubabags.col" target="_blank" rel="noopener noreferrer" style={{ fontSize: "0.78rem", color: "rgba(250,248,244,0.6)", textDecoration: "none" }}>@bubabags.col</a></li>
-                  </ul>
-                )
-              },
-            ].map((col) => (
-              <div key={col.heading}>
-                <p style={{ fontSize: "0.65rem", letterSpacing: "0.16em", color: "#8B7355", marginBottom: 20 }}>{col.heading}</p>
-                {"custom" in col ? col.custom : (
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
-                    {col.links.map((item) => (
-                      <li key={item}><a href="#" style={{ fontSize: "0.78rem", color: "rgba(250,248,244,0.6)", textDecoration: "none" }}>{item}</a></li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
+            <p style={{ fontSize: "0.78rem", color: "rgba(250,248,244,0.5)", lineHeight: 1.8, fontWeight: 300 }}>Bolsos y accesorios para la mujer contemporánea.</p>
           </div>
-          <div style={{ borderTop: "1px solid rgba(250,248,244,0.1)", paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-10 md:gap-16" style={{ marginBottom: 48, justifyItems: "center" }}>
+            <div>
+              <p style={{ fontSize: "0.65rem", letterSpacing: "0.16em", color: "#8B7355", marginBottom: 20 }}>TIENDA</p>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
+                {["Inicio", "Bolsos", "Calzados", "Accesorios"].map((item) => (
+                  <li key={item}><a href="#" style={{ fontSize: "0.78rem", color: "rgba(250,248,244,0.6)", textDecoration: "none" }}>{item}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p style={{ fontSize: "0.65rem", letterSpacing: "0.16em", color: "#8B7355", marginBottom: 20 }}>CONTACTO</p>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
+                <li><a href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer" style={{ fontSize: "0.78rem", color: "rgba(250,248,244,0.6)", textDecoration: "none" }}>WhatsApp</a></li>
+                <li><a href="https://instagram.com/bubabags.col" target="_blank" rel="noopener noreferrer" style={{ fontSize: "0.78rem", color: "rgba(250,248,244,0.6)", textDecoration: "none" }}>@bubabags.col</a></li>
+              </ul>
+            </div>
+            <div className="col-span-2 md:col-span-1">
+              <p style={{ fontSize: "0.65rem", letterSpacing: "0.16em", color: "#8B7355", marginBottom: 20 }}>SÍGUENOS</p>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
+                <li><a href="https://instagram.com/bubabags.col" target="_blank" rel="noopener noreferrer" style={{ fontSize: "0.78rem", color: "rgba(250,248,244,0.6)", textDecoration: "none", display: "flex", alignItems: "center", gap: 8 }}><Instagram size={14} /> Instagram</a></li>
+              </ul>
+            </div>
+          </div>
+          <div style={{ borderTop: "1px solid rgba(250,248,244,0.1)", paddingTop: 24, display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", gap: 24 }}>
             <p style={{ fontSize: "0.65rem", color: "rgba(250,248,244,0.35)", letterSpacing: "0.08em" }}>© 2026 Buba Handbags & Complement™. Todos los derechos reservados.</p>
             <div style={{ display: "flex", gap: 24 }}>
               {["Privacidad", "Términos", "Cookies"].map((item) => (
