@@ -33,7 +33,7 @@ const categories = [
 const services = [
   { icon: <Truck size={20} />, title: "ENVÍOS SIN RECARGOS", desc: "Envío gratis en todos los pedidos — $0 COP" },
   { icon: <Lock size={20} />, title: "PAGOS SEGUROS", desc: "Transacciones protegidas y encriptadas" },
-  { icon: <HeadphonesIcon size={20} />, title: "ATENCIÓN PERSONALIZADA", desc: "Te acompañamos en cada paso" },
+  { icon: <HeadphonesIcon size={20} />, title: "Soporte En WhatsApp", desc: "Resolvemos Tus Dudas" },
 ];
 
 const instagramImages = [
