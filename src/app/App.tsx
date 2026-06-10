@@ -284,7 +284,7 @@ export default function App() {
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 5vw, 3.5rem)", fontWeight: 400, color: "#1A1A1A", marginBottom: 8 }}>Buba Demo</h2>
             <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.4rem", color: "#8B7355", marginBottom: 20, fontWeight: 300 }}>$0 COP</p>
             <p style={{ fontSize: "0.85rem", color: "#5A5A5A", lineHeight: 1.8, fontWeight: 300, marginBottom: 28 }}>
-              La Buba Noir encarna la elegancia oscura. Cuero genuino negro, herrajes dorados y un diseño estructurado que transita del día a la noche sin esfuerzo.
+           
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <button style={{ backgroundColor: "#1A1A1A", color: "#FAF8F4", border: "none", padding: "12px 32px", fontSize: "0.68rem", letterSpacing: "0.18em", cursor: "pointer", transition: "background-color 0.2s", textTransform: "uppercase" }}
